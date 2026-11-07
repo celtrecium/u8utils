@@ -1,29 +1,29 @@
 #include <stdio.h>
 #include <string.h>
-#include <u8string.h>
+#include "u8utils.h"
 
 void
-test_u8char_compare (const u8char_t a, const u8char_t b)
+test_u8char_compare (const u8codept_t a, const u8codept_t b)
 {
-  if (u8char_compare (a, b))
+  if (u8codept_compare (a, b))
     printf ("UTF8 characters '%.*s' and '%.*s' are equal\n",
-            U8CHAR_LEN, a,
-            U8CHAR_LEN, b);
+            U8CODEPT_LEN, a,
+            U8CODEPT_LEN, b);
   else
     printf ("UTF8 characters '%.*s' and '%.*s' aren't equal\n",
-            U8CHAR_LEN, a,
-            U8CHAR_LEN, b);
+            U8CODEPT_LEN, a,
+            U8CODEPT_LEN, b);
 }
 
 int
 main (void)
 {
   const char  *str    = "Привет, Мир!";
-  const size_t u8slen = u8str_length (str);
+  const size_t u8slen = u8str_codepoints_count (str);
 
   char *ptr = (char*) str;
   size_t i;
-  u8char_t chbuff, a, b;
+  u8codept_t chbuff, a, b;
 
   printf ("UTF8 string length: %zu\n", u8slen);
   puts ("-----------------------");
@@ -31,7 +31,7 @@ main (void)
   for (i = 0; i < u8slen; ++i)
     {
       ptr = u8str_next_char (ptr, &chbuff);
-      printf ("[%zu] = \t'%.*s'\n", i, U8CHAR_LEN, chbuff);
+      printf ("[%zu] = \t'%.*s'\n", i, U8CODEPT_LEN, chbuff);
     }
 
   puts ("-----------------------");
@@ -41,7 +41,7 @@ main (void)
 
   test_u8char_compare (a, b);
 
-  u8char_copy (b, a);
+  u8codept_copy (b, a);
   
   test_u8char_compare (a, b);
 
