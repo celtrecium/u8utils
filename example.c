@@ -30,14 +30,14 @@ main (void)
 
   for (i = 0; i < u8slen; ++i)
     {
-      ptr = u8str_next_char (ptr, &chbuff);
+      ptr = u8str_next_codepoint (ptr, &chbuff);
       printf ("[%zu] = \t'%.*s'\n", i, U8CODEPT_LEN, chbuff);
     }
 
   puts ("-----------------------");
   
-  u8str_next_char ("Б", &a);
-  u8str_next_char ("Ж", &b);
+  u8str_next_codepoint ("Б", &a);
+  u8str_next_codepoint ("Ж", &b);
 
   test_u8char_compare (a, b);
 
