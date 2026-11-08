@@ -76,7 +76,7 @@ u8str_codepoints_count (const char *string)
 }
 
 static inline char*
-u8str_next_char (const char *src, u8codept_t *buff)
+u8str_next_codepoint (const char *src, u8codept_t *buff)
 {
   const size_t offset = cstr_get_first_utf8char_len ((unsigned char*) src);
 
